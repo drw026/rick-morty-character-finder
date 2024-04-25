@@ -37,9 +37,32 @@ function Character() {
           </CardFooter>
         </Card>
       </div>
+
       {character.episode ? character.episode.map((item) => (
-          <div key={item.id}>
+          <div key={item.id} className="">
             <div>{item.id} - {item.episode} - {item.name}</div>
+            {item.origins ?
+              <div className="flex flex-col">
+                {item.origins.map((origin) => (
+                  <div key={origin.id} className="">
+                    <strong>{origin.name} - {origin.dimension}</strong>
+                    {origin.characters ?
+                      <div className="flex flex-wrap gap-2">
+                        {origin.characters.map((character) => (
+                          <div key={character.id}>
+                            {character.name}
+                            <img
+                              alt={character.name}
+                              className="h-[80px] w-[80px] object-cover transition-all hover:scale-105 aspect-[3/4]"
+                              src={character.imageUrl}/>
+                          </div>
+                        ))}
+                      </div>
+                      : null}
+                  </div>
+                ))}
+              </div>
+              : null}
           </div>
         ))
         : null}

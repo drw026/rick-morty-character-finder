@@ -18,34 +18,38 @@ export type Character = {
   url: string;
 }
 
-type Origins = {
+export type FeaturedCharacter = Pick<Character, 'id' | 'name' | 'imageUrl'>
+
+export type Origin = {
   id: string;
   name: string;
   dimension: string;
-  characters: Pick<Character, 'id' | 'name' | 'imageUrl'>[]
-}[]
+  characters: FeaturedCharacter[];
+}
 
 export type Episode = {
   id: string;
   name: string;
   episode: string;
-  origins: Origins
+  origins: Origin[]
 };
 
 export type EpisodeResponse = {
   episode: string;
   id: string;
   name: string;
-  characters: {
-    name: string;
+  characters: FeaturedCharacterResponse[]
+}
+
+export type FeaturedCharacterResponse = {
+  name: string;
+  id: string;
+  image: string;
+  origin: {
+    dimension: string;
     id: string;
-    image: string;
-    origin: {
-      dimension: string;
-      id: string;
-      name: string;
-    }
-  }[]
+    name: string;
+  }
 }
 
 export type CharacterResponse = {
