@@ -1,23 +1,30 @@
+import { Link } from '@tanstack/react-router'
 import { Card } from '@/components/ui/card.tsx';
-import { ReactNode } from 'react';
 
 type CharacterCardProps = {
   imageUrl: string;
   name: string;
-  children: ReactNode
+  id: string;
+  status: string;
 }
 
-function CharacterCard({ imageUrl, name, children }: CharacterCardProps) {
+function CharacterCard({ imageUrl, name, id, status }: CharacterCardProps) {
   return (
-    <div className="flex flex-col cursor-pointer">
+    <Link
+      className="flex flex-col cursor-pointer"
+      to="/character/$characterId"
+      params={{
+        characterId: id,
+      }}
+    >
       <Card className="h-[250px] overflow-hidden">
         <img
           alt={name}
           className="h-auto w-auto object-cover transition-all hover:scale-105 aspect-[3/4]"
           src={imageUrl}/>
       </Card>
-      {children}
-    </div>
+      {name} - {status}
+    </Link>
   );
 }
 

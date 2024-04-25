@@ -6,8 +6,8 @@ import { useCharacters } from '@/lib/serviceHooks/useCharacters.ts';
 import CharacterCard from '@/components/OverviewPage/CharacterCard.tsx';
 
 function OverviewPage() {
-  const [ searchQuery, setSearchQuery] = useState('');
-  const { data: characters} = useCharacters(searchQuery, !!searchQuery);
+  const [searchQuery, setSearchQuery] = useState('');
+  const {data: characters} = useCharacters(searchQuery, !!searchQuery);
   const inputRef = useRef<HTMLInputElement>(null);
 
   function clickHandler() {
@@ -21,17 +21,16 @@ function OverviewPage() {
         <Input ref={inputRef} type="search" placeholder="Find character..."/>
         <Button type="submit" onClick={clickHandler}>Search</Button>
       </div>
-      <Card>
-        <div className="grid grid-cols-5 gap-2 p-2">
-          {characters ?
-            characters.map(({id, imageUrl, name, status}) => (
-              <CharacterCard key={id} imageUrl={imageUrl} name={name}>
-                <p>{name} - {status}</p>
-              </CharacterCard>
-            ))
-            : null}
-        </div>
-      </Card>
+      {characters ?
+        <Card>
+          <div className="grid grid-cols-5 gap-2 p-2">
+            {characters.map((character) => (
+              <CharacterCard key={character.id} {...character} />
+            ))}
+          </div>
+        </Card>
+        : null
+      }
     </div>
   );
 }
