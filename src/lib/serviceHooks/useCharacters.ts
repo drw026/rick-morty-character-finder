@@ -4,10 +4,10 @@ import { VITE_GRAPHQL_API_URL } from '@/common/constants.ts';
 import { GET_CHARACTERS } from '@/lib/queries.ts';
 import { mapCharacters } from '@/lib/mappers/mapCharacters.ts';
 
-export function useCharacters(query: string, enabled: boolean) {
+export function useCharacters(query: string, page = 1, enabled: boolean) {
   return useQuery({
     enabled,
-    queryKey: ['characters', query],
+    queryKey: ['characters', query, page],
     queryFn: async () => {
       const response = await fetch(VITE_GRAPHQL_API_URL, {
         method: 'POST',
@@ -19,7 +19,8 @@ export function useCharacters(query: string, enabled: boolean) {
           variables: {
             filter: {
               name: query
-            }
+            },
+            page
           }
         })
       });

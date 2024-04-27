@@ -1,6 +1,12 @@
 export const GET_CHARACTERS = `#graphql
-  query Characters($filter: FilterCharacter) {
-    characters(filter: $filter) {
+  query Characters($filter: FilterCharacter, $page: Int) {
+    characters(filter: $filter, page: $page) {
+      info {
+        count
+        next
+        pages
+        prev
+      }      
       results {
         name
         id

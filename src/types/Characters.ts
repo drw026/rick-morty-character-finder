@@ -2,12 +2,16 @@ import { Character } from '@/types/Character.ts';
 
 export type CharactersItem = Pick<Character, 'id' | 'name' | 'status' | 'imageUrl'>
 
-export type Characters = CharactersItem[];
+export type Characters = {
+  meta: CharactersMeta;
+  characters: CharactersItem[];
+};
 
 export type CharactersResponse = {
   data: {
     characters: {
-      results: CharacterItemResponse[]
+      info: CharactersMeta;
+      results: CharacterItemResponse[];
     }
   }
 }
@@ -17,4 +21,11 @@ export type CharacterItemResponse = {
   id: string;
   image: string;
   status: string;
+}
+
+type CharactersMeta = {
+  count: number;
+  pages: number;
+  next: number | null;
+  prev: number | null;
 }
