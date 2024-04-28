@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { VITE_GRAPHQL_API_URL } from '@/common/constants.ts';
 import { GET_CHARACTER } from '@/lib/queries.ts';
-import { type CharacterResponse } from '@/types/Character.ts';
+import { CharacterResponse } from '@/types/Character.ts';
 import { mapCharacter } from '@/lib/mappers/mapCharacter.ts';
 
 export function useCharacter(id: string) {
@@ -22,11 +22,10 @@ export function useCharacter(id: string) {
       });
 
       if (!response.ok) {
-        // TODO: error handling
+        throw new Error('Network response was not ok');
       }
 
       const responseJson: CharacterResponse = await response.json();
-
       return mapCharacter(responseJson);
     }
   })
