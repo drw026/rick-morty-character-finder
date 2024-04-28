@@ -29,5 +29,6 @@ module.exports = {
     '@typescript-eslint/no-non-null-assertion': 'off',
     'no-unused-vars': 'off',
     'react/display-name': 'off',
+    'react/react-in-jsx-scope': 'off'
   },
 }
