@@ -1,9 +1,6 @@
-import React from 'react';
-import { Link } from '@tanstack/react-router';
 import { useCharacter } from '@/lib/serviceHooks/useCharacter.ts';
 import { Route } from '@/routes/character/$characterId.lazy.tsx';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card.tsx';
-import { Avatar, AvatarImage } from '@/components/ui/avatar.tsx';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card.tsx';
 import {
   Episode,
   EpisodeCharacter,
@@ -13,13 +10,18 @@ import {
   EpisodeOriginTitle,
   EpisodeTitle
 } from '@/components/Episode/Episode.tsx';
+import { Separator } from '@/components/ui/separator.tsx';
 
 function Character() {
   const {characterId} = Route.useParams()
   const {isLoading, data: character} = useCharacter(characterId);
 
   if (isLoading) {
-    return <>Loading...</>
+    return (
+      <div className="flex flex-col items-center justify-center h-screen">
+        <span className="text-5xl uppercase tracking-tighter font-bold">Loading...</span>
+      </div>
+    )
   }
 
   if (!character) {
@@ -28,31 +30,50 @@ function Character() {
 
   return (
     <div className="flex flex-col gap-8">
-      <div className="flex justify-between">
+      <div className="flex flex-col sm:flex-row gap-3">
         <Card className="overflow-hidden">
           <img
             alt={character.name}
-            className="h-auto w-auto object-cover transition-all hover:scale-105 aspect-[3/4]"
+            className="w-full object-fill transition-all hover:scale-105"
             src={character.imageUrl}/>
         </Card>
-        <Card>
+        <Card className="flex-grow">
           <CardHeader>
-            <CardTitle>{character.name}</CardTitle>
-            <CardDescription>{character.type}</CardDescription>
+            <CardTitle className="text-4xl md:text-5xl uppercase tracking-tighter">{character.name}</CardTitle>
+            <CardDescription className="text-xl">
+              <span className="font-semibold">Status:</span> {character.status}
+            </CardDescription>
           </CardHeader>
           <CardContent>
-            <p>Gender: {character.gender}</p>
-            <p>Species: {character.species}</p>
+            <ul className="grid">
+              <li className="flex gap-2">
+                <span className="font-bold">Species</span>
+                <span>{character.species}</span>
+              </li>
+              <li className="flex gap-2">
+                <span className="font-bold">Type</span>
+                <span>{character.type ? character.type : '-'}</span>
+              </li>
+              <li className="flex gap-2">
+                <span className="font-bold">Gender</span>
+                <span>{character.gender}</span>
+              </li>
+              <li className="flex gap-2">
+                <span className="font-bold">Origin</span>
+                <span>{character.origin.name} - {character.origin.dimension}</span>
+              </li>
+              <li className="flex gap-2">
+                <span className="font-bold">Location</span>
+                <span>{character.location.name} - {character.location.dimension}</span>
+              </li>
+            </ul>
           </CardContent>
-          <CardFooter>
-            <p>Status: {character.status}</p>
-          </CardFooter>
         </Card>
       </div>
 
       {character.episode ?
         <div className="flex flex-col gap-8">
-          {character.episode.map((item) => (
+          {character.episode.map((item, index, array) => (
             <Episode key={item.id}>
               <EpisodeTitle>{item.episode} - {item.name}</EpisodeTitle>
               <EpisodeOrigins hasChildren={!!item.origins}>
@@ -61,27 +82,13 @@ function Character() {
                     <EpisodeOriginTitle>{origin.name} - {origin.dimension}</EpisodeOriginTitle>
                     <EpisodeCharacters hasChildren={!!origin.characters}>
                       {origin.characters.map((character) => (
-                        <EpisodeCharacter key={character.id}>
-                          <Link
-                            key={character.id}
-                            to="/character/$characterId"
-                            params={{
-                              characterId: character.id,
-                            }}
-                          >
-                            <div className="flex gap-2 items-center">
-                              <Avatar>
-                                <AvatarImage src={character.imageUrl}/>
-                              </Avatar>
-                              <span>{character.name}</span>
-                            </div>
-                          </Link>
-                        </EpisodeCharacter>
+                        <EpisodeCharacter key={character.id} character={character}/>
                       ))}
                     </EpisodeCharacters>
                   </EpisodeOrigin>
                 ))}
               </EpisodeOrigins>
+              {array.length !== index + 1 ? <Separator/> : null}
             </Episode>
           ))}
         </div>

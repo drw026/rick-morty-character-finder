@@ -1,8 +1,9 @@
-import React, { PropsWithChildren } from 'react';
+import { PropsWithChildren } from 'react';
+import { Link } from '@tanstack/react-router';
+import { Avatar, AvatarImage } from '@/components/ui/avatar.tsx';
+import { FeaturedCharacter } from '@/types/Character.ts';
 
-type EpisodeProps = PropsWithChildren;
-
-function Episode({children}: EpisodeProps) {
+function Episode({children}: PropsWithChildren) {
   return (
     <div className="flex flex-col gap-4">{children}</div>
   )
@@ -10,7 +11,7 @@ function Episode({children}: EpisodeProps) {
 
 function EpisodeTitle({children}: PropsWithChildren) {
   return (
-    <h3 className="text-2xl font-semibold tracking-tight">{children}</h3>
+    <h3 className="text-2xl font-bold tracking-tight">{children}</h3>
   );
 }
 
@@ -34,14 +35,28 @@ function EpisodeOriginTitle({children}: PropsWithChildren) {
 
 function EpisodeCharacters({hasChildren, children}: PropsWithChildren & { hasChildren: boolean }) {
   return (
-    hasChildren ? (<div className="flex flex-col gap-2">{children}</div>) : null
+    hasChildren ? (<div className="grid grid-cols-1 md:grid-cols-3 gap-2">{children}</div>) : null
   )
 }
 
-function EpisodeCharacter({children}: PropsWithChildren) {
+function EpisodeCharacter({ character }: { character: FeaturedCharacter } ) {
   return (
     <div className="flex flex-col">
-      {children}
+      <Link
+        title={`Biography ${character.name}`}
+        key={character.id}
+        to="/character/$characterId"
+        params={{
+          characterId: character.id,
+        }}
+      >
+        <div className="flex gap-2 items-center">
+          <Avatar>
+            <AvatarImage src={character.imageUrl}/>
+          </Avatar>
+          <span>{character.name}</span>
+        </div>
+      </Link>
     </div>
   )
 }
