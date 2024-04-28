@@ -61,7 +61,7 @@ function sortEpisode(episodes: EpisodeResponse[]): EpisodeResponse[] {
   const sortedEpisodes: {
     episode: EpisodeResponse,
     numberOfUniqueDimensions: number
-  }[] = episodesWithCount.toSorted(
+  }[] = episodesWithCount.sort(
     (a, b) =>
       b.numberOfUniqueDimensions - a.numberOfUniqueDimensions
   );

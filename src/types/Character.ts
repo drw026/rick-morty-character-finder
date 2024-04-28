@@ -8,11 +8,11 @@ export type Character = {
   gender: string;
   origin: {
     name: string;
-    url: string;
+    dimension: string;
   };
   location: {
     name: string;
-    url: string;
+    dimension: string;
   };
   episode: Episode[];
   url: string;
@@ -46,7 +46,7 @@ export type FeaturedCharacterResponse = {
   id: string;
   image: string;
   origin: {
-    dimension: string;
+    dimension: string | null;
     id: string;
     name: string;
   }
@@ -64,11 +64,11 @@ export type CharacterResponse = {
       gender: string;
       origin: {
         name: string;
-        url: string;
+        dimension: string;
       };
       location: {
         name: string;
-        url: string;
+        dimension: string;
       };
       episode: EpisodeResponse[];
       url: string;
