@@ -1,3 +1,12 @@
+# Proud Nerds Assessment
+
+## TODOS
+- [x] Detailpage
+- [x] Pagination
+- [x] Style + responsive Detailpage
+- [x] Style + responsive Overview
+- [ ] Unit testing
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
