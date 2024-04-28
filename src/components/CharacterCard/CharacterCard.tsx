@@ -1,6 +1,4 @@
-import React from 'react';
-import { Link } from '@tanstack/react-router'
-import { Card } from '@/components/ui/card.tsx';
+import { Link } from '@tanstack/react-router';
 
 type CharacterCardProps = {
   imageUrl: string;
@@ -12,19 +10,22 @@ type CharacterCardProps = {
 function CharacterCard({ imageUrl, name, id, status }: CharacterCardProps) {
   return (
     <Link
-      className="flex flex-col cursor-pointer"
+      className="flex flex-col gap-1"
       to="/character/$characterId"
       params={{
         characterId: id,
       }}
     >
-      <Card className="overflow-hidden">
+      <div className="overflow-hidden rounded-md">
         <img
           alt={name}
           className="h-auto w-auto object-cover transition-all hover:scale-105 aspect-[3/4]"
           src={imageUrl}/>
-      </Card>
-      {name} - {status}
+      </div>
+      <div>
+        <p className="text-base font-medium">{name}</p>
+        <p className="text-sm">{status}</p>
+      </div>
     </Link>
   );
 }

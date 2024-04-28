@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Pagination as PaginationUI,
   PaginationContent,
@@ -28,23 +27,27 @@ export function Pagination({
     <PaginationUI>
       <PaginationContent>
         {previous ?
-          <PaginationItem>
+          <PaginationItem className="cursor-pointer">
             <PaginationPrevious onClick={() => navigateToPageNumber(previous)}/>
           </PaginationItem>
           : null}
         {pages ?
           [...Array(pages)].map((_, index) => (
-            <PaginationLink
+            <PaginationItem
               key={`page-${index + 1}`}
-              onClick={() => navigateToPageNumber(index + 1)}
-              isActive={current === index + 1}
+              className="cursor-pointer"
             >
-              {index + 1}
-            </PaginationLink>
+              <PaginationLink
+                onClick={() => navigateToPageNumber(index + 1)}
+                isActive={current === index + 1}
+              >
+                {index + 1}
+              </PaginationLink>
+            </PaginationItem>
           ))
           : null}
         {next ?
-          <PaginationItem>
+          <PaginationItem className="cursor-pointer">
             <PaginationNext onClick={() => navigateToPageNumber(next)}/>
           </PaginationItem>
           : null}
