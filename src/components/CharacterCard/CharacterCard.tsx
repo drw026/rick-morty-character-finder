@@ -1,3 +1,4 @@
+import React from 'react';
 import { Link } from '@tanstack/react-router'
 import { Card } from '@/components/ui/card.tsx';
 
@@ -17,7 +18,7 @@ function CharacterCard({ imageUrl, name, id, status }: CharacterCardProps) {
         characterId: id,
       }}
     >
-      <Card className="h-[250px] overflow-hidden">
+      <Card className="overflow-hidden">
         <img
           alt={name}
           className="h-auto w-auto object-cover transition-all hover:scale-105 aspect-[3/4]"

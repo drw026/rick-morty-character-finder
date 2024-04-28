@@ -4,7 +4,7 @@ import { VITE_GRAPHQL_API_URL } from '@/common/constants.ts';
 import { GET_CHARACTERS } from '@/lib/queries.ts';
 import { mapCharacters } from '@/lib/mappers/mapCharacters.ts';
 
-export function useCharacters(query: string, page = 1, enabled: boolean) {
+export function useCharacters(query: string, page: number, enabled: boolean) {
   return useQuery({
     enabled,
     queryKey: ['characters', query, page],
@@ -26,11 +26,10 @@ export function useCharacters(query: string, page = 1, enabled: boolean) {
       });
 
       if (!response.ok) {
-        // TODO: error handling
+        throw new Error('Network response was not ok');
       }
 
       const responseJson: CharactersResponse = await response.json();
-
       return mapCharacters(responseJson);
     }
   })
