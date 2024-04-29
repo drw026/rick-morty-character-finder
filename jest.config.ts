@@ -23,7 +23,19 @@ module.exports = {
 
   // A set of global variables that need to be available in all test environments
   transform: {
-    '^.+\\.(t|j)sx?$': '@swc/jest',
+    // "^.+\\.tsx?$": "ts-jest"
+    '^.+\\.(t|j)sx?$': [
+      '@swc/jest',
+      {
+        jsc: {
+          transform: {
+            react: {
+              runtime: 'automatic',
+            },
+          },
+        },
+      },
+    ],
   },
 
   // The glob patterns Jest uses to detect test files
@@ -36,5 +48,5 @@ module.exports = {
   verbose: true,
   testEnvironment: 'jsdom',
 
-  setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
+  setupFilesAfterEnv: ['./jest.setup.ts'],
 };
