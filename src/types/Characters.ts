@@ -23,7 +23,7 @@ export type CharacterItemResponse = {
   status: string;
 }
 
-type CharactersMeta = {
+export type CharactersMeta = {
   count: number;
   pages: number;
   next: number | null;
