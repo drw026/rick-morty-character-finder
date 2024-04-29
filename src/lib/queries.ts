@@ -29,15 +29,11 @@ export const GET_CHARACTER = `#graphql
       gender
       origin {
         dimension
-        id
         name
-        type
       }      
       location {
         dimension
-        id
         name
-        type
       }
       episode {
         episode

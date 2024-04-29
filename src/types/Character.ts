@@ -15,15 +15,14 @@ export type Character = {
     dimension: string;
   };
   episode: Episode[];
-  url: string;
 }
 
 export type FeaturedCharacter = Pick<Character, 'id' | 'name' | 'imageUrl'>
 
 export type Origin = {
-  id: string;
+  id: string | null;
   name: string;
-  dimension: string;
+  dimension: string | null;
   characters: FeaturedCharacter[];
 }
 
@@ -47,7 +46,7 @@ export type FeaturedCharacterResponse = {
   image: string;
   origin: {
     dimension: string | null;
-    id: string;
+    id: string | null;
     name: string;
   }
 }
@@ -64,14 +63,13 @@ export type CharacterResponse = {
       gender: string;
       origin: {
         name: string;
-        dimension: string;
+        dimension: string | null;
       };
       location: {
         name: string;
-        dimension: string;
+        dimension: string | null;
       };
       episode: EpisodeResponse[];
-      url: string;
     }
   }
 }

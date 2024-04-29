@@ -14,7 +14,6 @@ export function mapCharacter(response: CharacterResponse): Character {
     type,
     image,
     name,
-    url,
     origin,
     species,
     status,
@@ -40,10 +39,15 @@ export function mapCharacter(response: CharacterResponse): Character {
     status,
     type,
     imageUrl: image,
-    origin,
+    origin: {
+      name: origin.name || '',
+      dimension: origin.dimension || ''
+    },
     species,
-    location,
-    url,
+    location: {
+      name: location.name || '',
+      dimension: location.dimension || ''
+    },
     episode: mappedEpisodes
   }
 }
@@ -70,7 +74,7 @@ function sortEpisode(episodes: EpisodeResponse[]): EpisodeResponse[] {
   return sortedEpisodes.slice(0, 10).map((item) => item.episode);
 }
 
-function calculateUniqueDimensions(characters: { origin: { id: string } }[]): number {
+function calculateUniqueDimensions(characters: { origin: { id: string | null } }[]): number {
   const uniqueDimensions = new Set(characters.map(character => character.origin.id));
   return uniqueDimensions.size;
 }
@@ -79,7 +83,9 @@ function createOrigins(characters: FeaturedCharacterResponse[]): Origin[] {
   const uniqueOrigins = getUniqueOrigins(characters);
   const originsWithCharacters = uniqueOrigins.map((origin) => {
     return {
-      ...origin,
+      id: origin.id || '',
+      dimension: origin.dimension || '',
+      name: origin.name,
       characters: findCharactersInOrigin(characters, origin)
     }
   });
@@ -100,7 +106,7 @@ function getUniqueOrigins(
 function findCharactersInOrigin(
   characters: FeaturedCharacterResponse[],
   origin: {
-    id: string
+    id: string | null
   }
 ): FeaturedCharacter[] {
   return characters.reduce((carrier: FeaturedCharacter[], character) => {

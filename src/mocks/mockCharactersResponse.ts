@@ -1,6 +1,5 @@
 import { getBuilder } from "@/mocks/utils/builder.ts";
 import {
-  CharacterItemResponse,
   CharactersMeta,
   CharactersResponse,
 } from "@/types/Characters.ts";
