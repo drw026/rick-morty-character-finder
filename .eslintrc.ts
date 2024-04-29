@@ -1,17 +1,22 @@
 module.exports = {
   root: true,
-  env: { browser: true, es2020: true },
+  env: {
+    browser: true,
+    es2020: true,
+    "jest/globals": true
+  },
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:react-hooks/recommended',
     'plugin:react/recommended',
-    'prettier'
+    'prettier',
+    'plugin:jest/recommended'
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint', 'react-refresh', 'prettier'],
+  plugins: ['@typescript-eslint', 'react-refresh', 'prettier', 'react-hooks', 'jest'],
   rules: {
     'react-refresh/only-export-components': [
       'warn',
@@ -30,5 +35,5 @@ module.exports = {
     'no-unused-vars': 'off',
     'react/display-name': 'off',
     'react/react-in-jsx-scope': 'off'
-  },
+  }
 }
