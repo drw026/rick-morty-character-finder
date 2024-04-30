@@ -1,39 +1,20 @@
-# Proud Nerds Assessment
+# Rick & Morty Character Finder
+Find your favorite Rick & Morty character and read their bio and linked episodes which are sorted by unique character dimension.
 
-## TODOS
-- [x] Detailpage
-- [x] Pagination
-- [x] Style + responsive Detailpage
-- [x] Style + responsive Overview
-- [ ] Unit testing
+## Setup
+Copy `.env.local.example` and rename it to `.env.local`.
 
-# React + TypeScript + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+Get the Rick & Morty GraphQL API URL and paste it in the `.env.local`.
+```
+VITE_GRAPHQL_API_URL=
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Start the app
+```
+yarn install
+yarn dev
+```
+> Note: The usage of Yarn is forced. Running `npm` will return an Error.
+
+## Info
+The app is created using Vite, React and Typescript.
