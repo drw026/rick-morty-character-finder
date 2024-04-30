@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Card } from '@/components/ui/card.tsx';
 import { useCharacters } from '@/lib/serviceHooks/useCharacters.ts';
-import CharacterCard from '@/components/CharacterCard/CharacterCard.tsx';
+import { CharacterCard } from '@/components/CharacterCard/CharacterCard.tsx';
 import { Pagination } from '@/components/Pagination/Pagination.tsx';
 import { Skeleton } from '@/components/ui/skeleton.tsx';
 import { Search } from '@/components/Search/Search.tsx';

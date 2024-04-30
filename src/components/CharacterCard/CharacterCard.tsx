@@ -7,7 +7,7 @@ type CharacterCardProps = {
   status: string;
 }
 
-function CharacterCard({ imageUrl, name, id, status }: CharacterCardProps) {
+export function CharacterCard({ imageUrl, name, id, status }: CharacterCardProps) {
   return (
     <Link
       className="flex flex-col gap-1"
@@ -29,5 +29,3 @@ function CharacterCard({ imageUrl, name, id, status }: CharacterCardProps) {
     </Link>
   );
 }
-
-export default CharacterCard;
