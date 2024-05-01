@@ -16,5 +16,14 @@ yarn dev
 ```
 > Note: The usage of Yarn is forced. Running `npm` will return an Error.
 
+### Test the app
+```
+yarn test
+```
+
 ## Info
-The app is created using Vite, React and Typescript.
+- The app is created using Vite, React and Typescript
+- Tested using Jest and React Testing Library
+- shadcn/ui components are used to shape the app
+- TanStack Router used for routing
+- TanStack Query used for data fetching and caching
