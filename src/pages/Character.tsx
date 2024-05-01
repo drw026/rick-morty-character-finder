@@ -1,6 +1,8 @@
+import { useEffect } from 'react';
 import { useCharacter } from '@/lib/serviceHooks/useCharacter.ts';
 import { Route } from '@/routes/character/$characterId.lazy.tsx';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card.tsx';
+import { Separator } from '@/components/ui/separator.tsx';
 import {
   Episode,
   EpisodeCharacter,
@@ -10,11 +12,14 @@ import {
   EpisodeOriginTitle,
   EpisodeTitle
 } from '@/components/Episode/Episode.tsx';
-import { Separator } from '@/components/ui/separator.tsx';
 
 function Character() {
   const {characterId} = Route.useParams()
   const {isLoading, data: character} = useCharacter(characterId);
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [characterId])
 
   if (isLoading) {
     return (
