@@ -5,37 +5,37 @@ import { FeaturedCharacter } from '@/types/Character.ts';
 
 function Episode({children}: PropsWithChildren) {
   return (
-    <div className="flex flex-col gap-4">{children}</div>
+    children ? <div className="flex flex-col gap-4">{children}</div> : null
   )
 }
 
 function EpisodeTitle({children}: PropsWithChildren) {
   return (
-    <h3 className="text-2xl font-bold tracking-tight">{children}</h3>
+    children ? <h3 className="text-2xl font-bold tracking-tight">{children}</h3> : null
   );
 }
 
-function EpisodeOrigins({hasChildren, children}: PropsWithChildren & { hasChildren: boolean }) {
+function EpisodeOrigins({children}: PropsWithChildren) {
   return (
-    hasChildren ? (<div className="flex flex-col gap-4">{children}</div>) : null
+    children ? <div className="flex flex-col gap-4">{children}</div> : null
   )
 }
 
 function EpisodeOrigin({children}: PropsWithChildren) {
   return (
-    <div className="flex flex-col gap-4">{children}</div>
+    children ? <div className="flex flex-col gap-4">{children}</div> : null
   )
 }
 
 function EpisodeOriginTitle({children}: PropsWithChildren) {
   return (
-    <h4 className="text-xl font-semibold tracking-tight">{children}</h4>
+    children ? <h4 className="text-xl font-semibold tracking-tight">{children}</h4> : null
   )
 }
 
-function EpisodeCharacters({hasChildren, children}: PropsWithChildren & { hasChildren: boolean }) {
+function EpisodeCharacters({children}: PropsWithChildren) {
   return (
-    hasChildren ? (<div className="grid grid-cols-1 md:grid-cols-3 gap-2">{children}</div>) : null
+    children ? (<div className="grid grid-cols-1 md:grid-cols-3 gap-2">{children}</div>) : null
   )
 }
 

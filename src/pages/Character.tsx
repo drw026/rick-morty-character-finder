@@ -76,11 +76,11 @@ function Character() {
           {character.episode.map((item, index, array) => (
             <Episode key={item.id}>
               <EpisodeTitle>{item.episode} - {item.name}</EpisodeTitle>
-              <EpisodeOrigins hasChildren={!!item.origins}>
+              <EpisodeOrigins>
                 {item.origins.map((origin) => (
                   <EpisodeOrigin key={origin.id}>
                     <EpisodeOriginTitle>{origin.name} - {origin.dimension}</EpisodeOriginTitle>
-                    <EpisodeCharacters hasChildren={!!origin.characters}>
+                    <EpisodeCharacters>
                       {origin.characters.map((character) => (
                         <EpisodeCharacter key={character.id} character={character}/>
                       ))}
